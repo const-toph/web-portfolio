@@ -2,6 +2,7 @@ import { Button } from "@/components/Button";
 import {
   Briefcase,
   ChevronDown,
+  Download,
   Facebook,
   Github,
   Linkedin,
@@ -10,25 +11,25 @@ import {
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButon";
 
 const skills = [
-  "TypeScript",
-  "JavaScript",
-  "Node.js",
-  "Bun",
-  "Hono",
-  "Express.js",
+  "Git",
+  "Github",
   "Zod",
   "Scalar",
   "Swagger",
   "Prisma",
   "PostgreSQL",
   "MySQL",
+  "Zustand",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "Bun",
+  "Hono",
+  "Express.js",
   "React.js",
   "Shadcn UI",
   "Ant Design",
-  "Zustand",
   "Tanstack Query",
-  "Git",
-  "Github",
   "Tailwind CSS",
 ];
 
@@ -168,7 +169,10 @@ export const Hero = () => {
                 <Briefcase className="size-4 mr-2" />
                 View my work
               </Button>
-              <AnimatedBorderButton />
+
+              <AnimatedBorderButton>
+                <Download className="w-5 h-5" /> Download CV
+              </AnimatedBorderButton>
             </div>
 
             {/* Social Links */}
