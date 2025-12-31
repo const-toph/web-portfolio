@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  /* Font families */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  --color-background: #e8e8e5;
+  --color-foreground: #0f2818;
+
+  --color-primary: #0f2818; /* Darkest forest green */
+  --color-primary-foreground: #e8e8e5; /* Light beige text on primary */
+
+  /* Secondary */
+  --color-secondary: #4a7c6b; /* Medium teal-green */
+  --color-secondary-foreground: #e8e8e5; /* Light beige on secondary */
+
+  /* Muted - For subtle elements */
+  --color-muted: #808f8a; /* Your gray */
+  --color-muted-foreground: #0f2818; /* Dark green text */
+
+  /* Accent - For highlights */
+  --color-accent: #d4af37; /* Gold */
+  --color-accent-foreground: #0f2818; /* Dark text on gold */
+
+  /* Borders */
+  --color-border: #808f8a; /* Gray for borders */
+  --color-ring: #70b89f; /* Teal for focus rings */
+
+  /* Your custom palette colors */
+  --color-gold: #d4af37;
+  --color-light-green: #9ccc65;
+  --color-teal: #70b89f;
+  --color-dark-teal: #4a7c6b;
+  --color-forest: #2d5a47;
+  --color-dark-forest: #1a3a2a;
+  --color-primary-dark: #0f2818;
+  --color-gray: #808f8a;
+
+  --radius: 0.75rem;
+
+  --color-highlight: #d4af37;
+  --color-surface: #1a2329;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .glass {
+    background-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid
+      color-mix(in srgb, var(--color-light-green) 50%, transparent);
+  }
+
+  .glass-strong {
+    background-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+    backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, var(--color-light-green) 20%, transparent);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 30px
+      color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 20px
+        color-mix(in srgb, var(--color-dark-teal) 90%, transparent),
+      inset 0 0 20px color-mix(in srgb, var(--color-dark-teal) 90%, transparent);
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-in both;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  @keyframes slow-drift {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(20px, -30px);
+    }
+    50% {
+      transform: translate(-15px, -20px);
+    }
+    75% {
+      transform: translate(30px, 10px);
+    }
+  }
+
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+
+  @keyframes animated-border {
+    0% {
+      stroke-dashoffset: 400;
+    }
+    100% {
+      stroke-dashoffset: -550;
+    }
+  }
+
+  .group:hover .animated-border-path {
+    animation: animated-border 1.5s linear infinite;
+  }
+  .animated-border:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--color-dark-teal) 40%,
+      transparent
+    );
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 5%, transparent);
+  }
+
+  @keyframes float-3d {
+    0%,
+    100% {
+      transform: perspective(1000px) translateY(0px) translateX(0px)
+        rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    25% {
+      transform: perspective(1000px) translateY(-30px) translateX(20px)
+        rotateX(10deg) rotateY(10deg) rotateZ(5deg);
+    }
+    50% {
+      transform: perspective(1000px) translateY(-50px) translateX(-10px)
+        rotateX(-5deg) rotateY(15deg) rotateZ(-3deg);
+    }
+    75% {
+      transform: perspective(1000px) translateY(-20px) translateX(30px)
+        rotateX(8deg) rotateY(-10deg) rotateZ(4deg);
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
