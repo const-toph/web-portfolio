@@ -79,7 +79,10 @@ export const Navbar = () => {
             <Button
               size="md"
               className="glass-strong "
-              onClick={() => (window.location.href = "#contact")}
+              onClick={() => {
+                window.location.href = "#contact";
+                setIsMobileMenuOpen(false);
+              }}
             >
               <Mail className="h-5 w-5" /> Get in touch
             </Button>

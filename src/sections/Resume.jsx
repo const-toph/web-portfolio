@@ -44,7 +44,7 @@ repair requests and asset tracking. `,
   ],
   education: [
     {
-      degree: "Bachelor of Science in Computer Science",
+      degree: "Bachelor of Science in Information Technology",
       school: "Nueva Ecija University of Science and Technology",
       location: "Nueva Ecija, Philippines",
       period: "2020 - 2024",
