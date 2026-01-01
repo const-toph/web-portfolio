@@ -70,7 +70,7 @@ const formatDate = (dateString) => {
 
 export const Projects = () => {
   return (
-    <section id="projects" className="py-23 relative overflow-hidden">
+    <section id="projects" className="py-2 relative overflow-hidden">
       {/* Bg glows */}
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/50 rounded-full blur-3xl" />
@@ -94,7 +94,7 @@ export const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <div
               key={index}
