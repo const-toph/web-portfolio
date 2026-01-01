@@ -24,7 +24,7 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
         isScrolled ? "glass-strong py-3" : "bg-transparent py-5"
       } z-20 `}
     >
@@ -38,7 +38,7 @@ export const Navbar = () => {
               <a
                 href={link.href}
                 key={index}
-                className="px-4 py-2 text-sm text-primary-foreground hover:text-(--color-light-green) rounded full hover:bg-forest"
+                className="px-4 py-2 text-sm text-primary-foreground hover:text-light-green rounded full hover:bg-forest"
               >
                 {link.label}
               </a>
@@ -70,7 +70,7 @@ export const Navbar = () => {
               <a
                 href={link.href}
                 key={index}
-                className="text-lg text-primary-foreground hover:text-(--color-light-green) rounded-full hover:bg-forest py-2"
+                className="text-lg text-primary-foreground hover:text-light-green rounded-full hover:bg-forest py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}

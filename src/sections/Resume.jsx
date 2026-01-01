@@ -341,7 +341,7 @@ export const Resume = () => {
           </div> */}
 
           {/* CTA */}
-          <div className="glass rounded-2xl p-8 border border-primary/20 text-center bg-primary/5">
+          {/* <div className="glass rounded-2xl p-8 border border-primary/20 text-center bg-primary/5">
             <h3 className="text-2xl font-semibold mb-3 text-primary">
               Interested in working together?
             </h3>
@@ -357,7 +357,7 @@ export const Resume = () => {
                 View Full Resume
               </Button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ const projects = [
   {
     title: "VYSMO - Visitor Monitoring System",
     description: "desc",
-    image: "/projects/project1.jpg",
+    image: "https://dummyimage.com/1200x600/0f2818/808f8a&text=Project+Screenshot",
     link: "#",
     github: "#",
     tags: ["PHP", "HTML", "CSS", "JavaScript", "MySQL", "XAMPP"],
@@ -22,7 +22,7 @@ const projects = [
   {
     title: "ICTU Repair and Inventory Management System",
     description: "desc",
-    image: "/projects/project2.jpg",
+    image: "https://dummyimage.com/1200x600/0f2818/808f8a&text=Project+Screenshot",
     link: "#",
     github: "#",
     tags: [
@@ -43,17 +43,17 @@ const projects = [
   {
     title: "Blingdream.co Website",
     description: "desc",
-    image: "/projects/project3.jpg",
+    image: "https://dummyimage.com/1200x600/0f2818/808f8a&text=Project+Screenshot",
     link: "#",
     github: "#",
-    tags: ["React", "Node.js"],
+    tags: ["Typescript","React", "Node.js", "Hono", "Prisma ORM", "PostgreSQL", "Docker"],
     project_type: "Client Project",
     organization: "Small Business Name",
   },
   {
     title: "Personal Portfolio Website",
     description: "desc",
-    image: "/projects/project4.jpg",
+    image: "https://dummyimage.com/1200x600/0f2818/808f8a&text=Project+Screenshot",
     link: "#",
     github: "#",
     tags: ["React", "Tailwind CSS"],
@@ -109,7 +109,7 @@ export const Projects = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-linear-to-t from-card via-card/50 to-transparent opacity-60" />
 
                 {/* Overlay Links */}
                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
@@ -149,7 +149,7 @@ export const Projects = () => {
                     className="w-5 h-5 text-primary/50 group-hover:text-primary
                     group-hover:translate-x-1 
                     group-hover:-translate-y-1 
-                    transition-all flex-shrink-0"
+                    transition-all shrink-0"
                   />
                 </div>
 

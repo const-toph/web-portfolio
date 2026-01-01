@@ -43,7 +43,7 @@ const contactInfo = [
 export const Contact = () => {
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
   return (
-    <section id="contact" className="py-25 relative overflow-hidden">
+    <section id="contact" className="py-20 relative overflow-hidden">
       {/* Bg glows */}
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-secondary/50 rounded-full blur-3xl" />
