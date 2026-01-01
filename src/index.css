@@ -70,7 +70,8 @@
   .glass-strong {
     background-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
     backdrop-filter: blur(24px);
-    border: 1px solid color-mix(in srgb, var(--color-light-green) 20%, transparent);
+    border: 1px solid
+      color-mix(in srgb, var(--color-light-green) 20%, transparent);
   }
 
   .glow-text {
@@ -110,6 +111,10 @@
   .animate-marquee {
     animation: marquee 30s linear infinite;
   }
+  
+  .animate-marquee-fast {
+    animation: marquee 8s linear infinite;
+  }
 
   @keyframes slow-drift {
     0%,
@@ -132,7 +137,7 @@
   }
   .animation-delay-200 {
     animation-delay: 200ms;
-  }
+  }v
   .animation-delay-300 {
     animation-delay: 300ms;
   }
@@ -197,5 +202,43 @@
     100% {
       transform: translateX(-50%);
     }
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) transparent;
+  }
+
+  /* Webkit (Chrome, Safari, Edge) */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-primary) ;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary) ;
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: var(--color-primary) ;
+    background-clip: padding-box;
+  }
+
+  /* Corner when both scrollbars appear */
+  *::-webkit-scrollbar-corner {
+    background: transparent;
   }
 }

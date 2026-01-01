@@ -7,8 +7,10 @@ import {
   Github,
   Linkedin,
   Mail,
+  ScrollText,
 } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButon";
+import { useScreenSize } from "@/hooks/useScreenSize";
 
 const skills = [
   "Git",
@@ -34,6 +36,8 @@ const skills = [
 ];
 
 export const Hero = () => {
+  const screenType = useScreenSize();
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* BG */}
@@ -161,17 +165,21 @@ export const Hero = () => {
 
             {/* CTA Buttons - Call to Action */}
 
-            <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
+            <div className="flex flex-wrap gap-3 items-center animate-fade-in animation-delay-300">
               <Button
-                size="md"
+                size={screenType == "mobile" ? "sm" : "md"}
                 className="rounded-3xl bg-[#0F2818] hover:bg-[#1A3A2A] text-white"
+                onClick={() => window.location.href = '#projects'}
               >
                 <Briefcase className="size-4 mr-2" />
                 View my work
               </Button>
 
-              <AnimatedBorderButton>
-                <Download className="w-5 h-5" /> Download CV
+              <AnimatedBorderButton
+                size={screenType == "mobile" ? "sm" : "md"}
+                onClick={() => window.location.href = '#resume'}
+              >
+                <ScrollText className="w-5 h-5" /> View Resume
               </AnimatedBorderButton>
             </div>
 
@@ -222,7 +230,7 @@ export const Hero = () => {
             Technologies I work with
           </p>
           <div className="relative overflow-hidden">
-            <div className="flex animate-marquee">
+            <div className={`flex ${screenType == "mobile" ? "animate-marquee-fast" : "animate-marquee"}`}>
               {[...skills, ...skills].map((skill, idx) => (
                 <div key={idx} className="shrink-0 px-8 py-4">
                   <span className="text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors">
@@ -235,7 +243,7 @@ export const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in animation-delay-800">
+      {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in animation-delay-800">
         <a
           href="#about"
           className="flex flex-col items-center gap-2 text-muted-foreground/50 hover:text-primary"
@@ -243,7 +251,7 @@ export const Hero = () => {
           <span className="text-xs uppercase tracking-wider">Scroll</span>
           <ChevronDown className="w-6 h-6 animate-bounce" />
         </a>
-      </div>
+      </div> */}
     </section>
   );
 };

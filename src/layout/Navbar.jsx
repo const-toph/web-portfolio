@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import HoveredName from "@/components/HoveredName";
 
 const navLinks = [
-  { href: "#home", label: "HOME" },
+  { href: "#", label: "HOME" },
   { href: "#projects", label: "PROJECTS" },
-  { href: "#contact", label: "CONTACT" },
-  // { href: "#skilltree", label: "SKILL TREE" },
+  // { href: "#contact", label: "CONTACT" },
   { href: "#resume", label: "RESUME" },
 ];
 export const Navbar = () => {
@@ -30,9 +29,6 @@ export const Navbar = () => {
       } z-20 `}
     >
       <nav className="container mx-auto px-6 flex items-center justify-between">
-        {/* <a href="#" className="text-xl font-bold tracking-tight hover:text-">
-          CJSM<span className="text-primary">.</span>
-        </a> */}
         <HoveredName isScrolled={isScrolled} />
 
         {/* Desktop Navigation */}
@@ -52,7 +48,7 @@ export const Navbar = () => {
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <Button size="sm">
+          <Button size="sm" onClick={() => (window.location.href = "#contact")}>
             <Mail className="h-5 w-5" /> Get in touch
           </Button>
         </div>
@@ -80,8 +76,11 @@ export const Navbar = () => {
                 {link.label}
               </a>
             ))}
-
-            <Button size="md" className="glass-strong">
+            <Button
+              size="md"
+              className="glass-strong "
+              onClick={() => (window.location.href = "#contact")}
+            >
               <Mail className="h-5 w-5" /> Get in touch
             </Button>
           </div>
