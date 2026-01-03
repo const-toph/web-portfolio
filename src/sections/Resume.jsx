@@ -56,10 +56,10 @@ repair requests and asset tracking. `,
 
 export const Resume = () => {
   const handleDownload = () => {
-    const pdfUrl = "/resume.pdf";
+    const pdfUrl = "/CHRISTOPHER JAY S. MANUBAY - RESUME.pdf";
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.download = "Christopher_Jay_Manubay_Resume.pdf";
+    link.download = "CHRISTOPHER JAY S. MANUBAY - RESUME.pdf";
     link.target = "_blank";
     document.body.appendChild(link);
     link.click();
