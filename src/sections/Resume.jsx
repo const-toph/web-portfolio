@@ -46,6 +46,7 @@ repair requests and asset tracking. `,
     {
       degree: "Bachelor of Science in Information Technology",
       school: "Nueva Ecija University of Science and Technology",
+      major: "Database Systems Technology",
       location: "Nueva Ecija, Philippines",
       period: "2020 - 2024",
       description: "Academic Excellence Awardee (Consistent Dean’s Lister)",
@@ -55,12 +56,14 @@ repair requests and asset tracking. `,
 
 export const Resume = () => {
   const handleDownload = () => {
-    // Replace with your actual PDF file path
     const pdfUrl = "/resume.pdf";
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.download = "Christopher_Manubay_Resume.pdf";
+    link.download = "Christopher_Jay_Manubay_Resume.pdf";
+    link.target = "_blank";
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -158,13 +161,13 @@ export const Resume = () => {
           <div className="glass rounded-2xl p-8 border border-primary/20">
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-primary/10">
-                <User className="w-6 h-6 text-primary" />
+                <User className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold mb-3 text-primary/90">
                   {resumeData.summary.title}
                 </h3>
-                <p className="text-muted-foreground/70 leading-relaxed">
+                <p className="text-muted-foreground/70 text-justify">
                   {resumeData.summary.content}
                 </p>
               </div>
@@ -197,7 +200,7 @@ export const Resume = () => {
                         {job.company} • {job.location}
                       </p>
                     </div>
-                    <span className="px-3 py-1 rounded-full bg-surface/50 text-xs font-medium border border-border/50 text-muted-foreground">
+                    <span className="px-3 py-1 rounded-full bg-muted text-xs font-medium border border-border/50 text-muted-foreground">
                       {job.period}
                     </span>
                   </div>
@@ -242,11 +245,14 @@ export const Resume = () => {
                       <p className="text-muted-foreground/70 text-sm">
                         {edu.school}
                       </p>
+                      <p className="text-muted-foreground/70 text-xs">
+                        Major in {edu.major}
+                      </p>
                       <p className="text-muted-foreground/60 text-xs">
                         {edu.location}
                       </p>
                     </div>
-                    <span className="px-3 py-1 rounded-full bg-surface/50 text-xs font-medium border border-border/50 text-muted-foreground">
+                    <span className="px-3 py-1 rounded-full bg-muted text-xs font-medium border border-border/50 text-muted-foreground">
                       {edu.period}
                     </span>
                   </div>

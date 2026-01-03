@@ -39,7 +39,7 @@ export const Hero = () => {
   const screenType = useScreenSize();
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative  flex items-center overflow-hidden">
       {/* BG */}
       <div className="absolute inset-0">
         {/* <img

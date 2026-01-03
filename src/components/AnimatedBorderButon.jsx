@@ -6,7 +6,7 @@ export const AnimatedBorderButton = ({
   className,
   onClick,
 }) => {
-  const baseClasses = `relative bg-transparent border border-border text-primary
+  const baseClasses = `cursor-pointer relative bg-transparent border border-border text-primary
     hover:border-primary/50 transition-all duration-1000 focus:outline-none focus-visible:ring-2
     focus-visible:ring-primary focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed
     group

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useScreenSize } from "@/hooks/useScreenSize";
 
-export default function HoveredName() {
+export default function HoveredName({ isScrolled }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const screenType = useScreenSize();
@@ -18,13 +18,21 @@ export default function HoveredName() {
     >
       {/* Initials */}
       <span
-        className="inline-block transition-all duration-500 ease-in-out whitespace-nowrap"
+        className={`inline-block transition-all duration-500 ease-in-out whitespace-nowrap ${
+          isScrolled && "text-white/80"
+        }`}
         style={{
           opacity: shouldShowFullName ? 0 : 1,
           transform: shouldShowFullName ? "translateY(-100%)" : "translateY(0)",
         }}
       >
-        CJSM<span className="text-green-600">.</span>
+        {isScrolled && "<"}CJSM
+        <span
+          className={`${isScrolled ? "text-light-green" : "text-green-600"}`}
+        >
+          .
+        </span>
+        {isScrolled && "/>"}
       </span>
 
       {/* Full name */}
