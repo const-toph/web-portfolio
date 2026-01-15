@@ -71,7 +71,7 @@ export const Hero = () => {
 
       {/* 3D Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => {
+        {[...Array(20)].map((_, i) => {
           const shapes = ["cube", "bracket", "tag", "code"];
           const shape = shapes[i % shapes.length];
           const size = 40 + Math.random() * 60;
@@ -141,7 +141,7 @@ export const Hero = () => {
       <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left column */}
-          <div className="space-y-8">
+          <div className="space-y-8 lg:px-5">
             <div className="animate-fade-in animation-delay-100">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/75 text-sm text-background">
                 <span className="w-2 h-2 bg-light-green rounded-full text-white" />
