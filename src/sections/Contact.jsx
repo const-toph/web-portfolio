@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useForm, ValidationError } from "@formspree/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const contactInfo = [
   {
@@ -42,21 +42,23 @@ const contactInfo = [
 export const Contact = () => {
   const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
   const formRef = useRef(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  // Reset form after successful submit
+  // Show success view after successful submit
   useEffect(() => {
     if (state.succeeded) {
       formRef.current?.reset();
+      setShowSuccess(true);
     }
   }, [state.succeeded]);
 
   const resetForm = () => {
-    window.location.reload(); // Simple way to reset the form state
-    // Or you could implement a custom reset function if useForm supports it
+    setShowSuccess(false);
+    formRef.current?.reset();
   };
 
   // Success View
-  if (state.succeeded) {
+  if (showSuccess) {
     return (
       <section id="contact" className="py-21 relative overflow-hidden">
         {/* Background glows */}
