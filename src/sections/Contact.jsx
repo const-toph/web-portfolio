@@ -6,6 +6,7 @@ import {
   XCircle,
   Github,
   Linkedin,
+  ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useForm, ValidationError } from "@formspree/react";
@@ -49,6 +50,93 @@ export const Contact = () => {
     }
   }, [state.succeeded]);
 
+  const resetForm = () => {
+    window.location.reload(); // Simple way to reset the form state
+    // Or you could implement a custom reset function if useForm supports it
+  };
+
+  // Success View
+  if (state.succeeded) {
+    return (
+      <section id="contact" className="py-21 relative overflow-hidden">
+        {/* Background glows */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-1/4 right-0 w-96 h-96 bg-secondary/50 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/5 left-0 w-64 h-64 bg-highlight/30 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-2xl mx-auto text-center">
+            {/* Success Icon */}
+            <div className="mb-8 animate-fade-in">
+              <div className="inline-flex p-6 rounded-full bg-primary/10 border-2 border-primary/20">
+                <CheckCircle className="w-16 h-16 text-primary" />
+              </div>
+            </div>
+
+            {/* Success Message */}
+            <h2 className="text-4xl md:text-5xl italic font-normal mb-6 animate-fade-in animation-delay-100 text-primary/80">
+              Message Sent!
+            </h2>
+            <p className="text-lg text-muted-foreground/70 mb-8 animate-fade-in animation-delay-200">
+              Thanks for reaching out! I've received your message and will get back to you as soon as possible.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in animation-delay-300">
+              <Button
+                size="lg"
+                onClick={resetForm}
+                className="group"
+              >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                Send Another Message
+              </Button>
+              
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => {
+                  const heroSection = document.getElementById('hero') || document.body;
+                  heroSection.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Back to Home
+              </Button>
+            </div>
+
+            {/* Contact Info Cards */}
+            <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in animation-delay-400">
+              {contactInfo.map((info, index) => {
+                const Icon = info.icon;
+                return (
+                  <a
+                    key={index}
+                    href={info.href}
+                    className="glass py-4 px-4 rounded-2xl border border-border hover:border-primary transition-all group flex items-center gap-3"
+                  >
+                    <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-xs text-muted-foreground/70">
+                        {info.label}
+                      </p>
+                      <p className="text-primary font-medium group-hover:text-secondary transition-colors text-sm">
+                        {info.value}
+                      </p>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Form View (default)
   return (
     <section id="contact" className="py-21 relative overflow-hidden">
       {/* Background glows */}
@@ -158,7 +246,7 @@ export const Contact = () => {
                 size="lg"
                 className="w-full"
                 type="submit"
-                disabled={state.submitting || state.succeeded}
+                disabled={state.submitting}
               >
                 {state.submitting ? (
                   <>
@@ -171,14 +259,6 @@ export const Contact = () => {
                   </>
                 )}
               </Button>
-
-              {/* Success */}
-              {state.succeeded && (
-                <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-sm flex items-center gap-3 animate-fade-in">
-                  <CheckCircle className="w-5 h-5 shrink-0 text-primary" />
-                  <span className="text-primary">Thanks! I'll get back to you soon.</span>
-                </div>
-              )}
 
               {/* Error */}
               {state.errors &&
