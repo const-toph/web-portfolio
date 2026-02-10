@@ -9,8 +9,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/components/Button";
-import { useForm, ValidationError } from "@formspree/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const contactInfo = [
   {
@@ -40,20 +39,46 @@ const contactInfo = [
 ];
 
 export const Contact = () => {
-  const [state, handleSubmit] = useForm(import.meta.env.VITE_FORMSPREE_ID);
   const formRef = useRef(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Show success view after successful submit
-  useEffect(() => {
-    if (state.succeeded) {
-      formRef.current?.reset();
-      setShowSuccess(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(e.target);
+    
+    try {
+      const response = await fetch(
+        `https://formspree.io/f/${import.meta.env.VITE_FORMSPREE_ID}`,
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        formRef.current?.reset();
+        setShowSuccess(true);
+      } else {
+        setError("Oops! Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Oops! Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-  }, [state.succeeded]);
+  };
 
   const resetForm = () => {
     setShowSuccess(false);
+    setError(null);
     formRef.current?.reset();
   };
 
@@ -181,14 +206,8 @@ export const Contact = () => {
                   type="text"
                   required
                   placeholder="Your name..."
-                  disabled={state.submitting}
+                  disabled={isSubmitting}
                   className="w-full px-4 py-3 bg-transparent rounded-xl border border-primary/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                />
-                <ValidationError
-                  prefix="Name"
-                  field="name"
-                  errors={state.errors}
-                  className="text-red-400 text-sm mt-1"
                 />
               </div>
 
@@ -207,14 +226,8 @@ export const Contact = () => {
                   inputMode="email"
                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                   title="Please enter a valid email address"
-                  disabled={state.submitting}
+                  disabled={isSubmitting}
                   className="w-full px-4 py-3 bg-transparent rounded-xl border border-primary/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                />
-                <ValidationError
-                  prefix="Email"
-                  field="email"
-                  errors={state.errors}
-                  className="text-red-400 text-sm mt-1"
                 />
               </div>
 
@@ -232,14 +245,8 @@ export const Contact = () => {
                   rows={5}
                   required
                   placeholder="Your message..."
-                  disabled={state.submitting}
+                  disabled={isSubmitting}
                   className="w-full px-4 py-3 bg-transparent rounded-xl border border-primary/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none disabled:opacity-50 disabled:cursor-not-allowed"
-                />
-                <ValidationError
-                  prefix="Message"
-                  field="message"
-                  errors={state.errors}
-                  className="text-red-400 text-sm mt-1"
                 />
               </div>
 
@@ -248,9 +255,9 @@ export const Contact = () => {
                 size="lg"
                 className="w-full"
                 type="submit"
-                disabled={state.submitting}
+                disabled={isSubmitting}
               >
-                {state.submitting ? (
+                {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                     Sending...
@@ -263,16 +270,12 @@ export const Contact = () => {
               </Button>
 
               {/* Error */}
-              {state.errors &&
-                state.errors.length > 0 &&
-                !state.errors.some((e) => e.field) && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-3 animate-fade-in">
-                    <XCircle className="w-5 h-5 shrink-0" />
-                    <span>
-                      Oops! Something went wrong. Please try again.
-                    </span>
-                  </div>
-                )}
+              {error && (
+                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-3 animate-fade-in">
+                  <XCircle className="w-5 h-5 shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
             </form>
           </div>
 
