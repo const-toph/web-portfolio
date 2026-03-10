@@ -140,9 +140,15 @@ export const Resume = () => {
         {/* Section Header */}
         <div className="flex items-center justify-between mb-12 max-w-5xl mx-auto">
           <div>
-            <span className="text-secondary text-sm font-bold tracking-wider uppercase">
+            <span className="hidden sm:block text-secondary text-sm font-bold tracking-wider uppercase">
               Resume
             </span>
+
+            {/* Mobile button */}
+            <Button className="sm:hidden" size="sm" onClick={handleDownload}>
+              <Download className="w-5 h-5" />
+              Resume
+            </Button>
             <h2 className="text-4xl md:text-5xl italic font-normal mt-2 text-primary/80">
               My Experience
             </h2>
@@ -150,7 +156,11 @@ export const Resume = () => {
               Full Stack Developer with expertise in modern web technologies
             </p>
           </div>
-          <Button size="default" onClick={handleDownload}>
+          <Button
+            className="max-md:hidden"
+            size="default"
+            onClick={handleDownload}
+          >
             <Download className="w-5 h-5" />
             Download PDF
           </Button>
